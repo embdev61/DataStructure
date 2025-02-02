@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "linklist.h": "c",
+        "config.h": "c"
+    }
+}

@@ -1,0 +1,21 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define TRUE  1
+#define FALSE 0
+
+#define ENABLE_PROCESS  TRUE
+#define DISABLE_PROCESS FALSE
+
+#define DEBUG_LOG            TRUE
+#define MAX_LINKED_LIST_NODE 10
+
+#define PROCESS_LINKED_LIST ENABLE_PROCESS
+#define PROCESS_STACK       DISABLE_PROCESS
+#define PROCESS_QUEUE       DISABLE_PROCESS
+#define PROCESS_TREE        DISABLE_PROCESS
+#define PROCESS_GRAPH       DISABLE_PROCESS
+
+typedef int ListDataType;
+
+#endif
