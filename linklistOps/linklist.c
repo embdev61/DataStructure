@@ -1,6 +1,24 @@
+#include "stdlib.h"
 #include "linklist.h"
 
-//struct LLNode *pNode;
+
+node *pHeadNode = NULL;
+
+node * addItemInLL(ListDataType Val)
+{
+    node *pNewNode = (node *)malloc(sizeof(node));
+    if(pNewNode != NULL)
+    {
+        pNewNode->value = Val;        
+    }
+    /*Check the empty list and add first node in link list*/
+    if (pHeadNode == NULL)
+    {
+        pNewNode->next = NULL;
+        pHeadNode = pNewNode;
+    }
+    
+}
 
 //Insert Item in linked list =
  // Start, End and specific location.
