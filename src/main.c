@@ -1,17 +1,15 @@
 #include <stdio.h>
 #include "linklist.h"
 
- //node pHead = {0, NULL};
- //node *pNextNode = NULL;
-
 int main() {
-    printf("Hello, C Project!\n");
 
-    // Print pHead value
- //   pHead.value = 10;
- //   pHead.next = NULL;
-
-//    printf("pHead value: %d\n", pHead.value);
-
+    LOG("INFO", BLUE, "Hello, C Project!"); 
+   
+    addItemInLL(10);
+    addItemInLL(15);
+    addItemInLL(20);
+    addItemInLL(25);
+    addItemInLL(30);
+    //displayItemInLL();
     return 0;
 }

@@ -1,0 +1,6 @@
+#ifndef CONFIG_ENV_H
+#define CONFIG_ENV_H
+
+#define BASE_PATH "@BASE_PATH@"
+
+#endif

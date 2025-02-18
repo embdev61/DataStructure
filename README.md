@@ -12,6 +12,9 @@ cmake .. -G "MinGW Makefiles"
 # Compile the project
 cmake --build .
 
+# or clean first and compile the project.
+cmake --build . --clean-first
+
 # Run the executable
 ./programme.exe
 
