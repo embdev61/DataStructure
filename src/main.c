@@ -10,6 +10,6 @@ int main() {
     addItemInLL(20);
     addItemInLL(25);
     addItemInLL(30);
-    //displayItemInLL();
+    displayItemInLL();
     return 0;
 }

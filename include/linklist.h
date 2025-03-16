@@ -8,6 +8,6 @@ typedef struct node {
 }node;
 
 void addItemInLL(ListDataType Val);
-//void displayItemInLL();
+void displayItemInLL();
 
 #endif

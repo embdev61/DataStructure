@@ -30,6 +30,31 @@ void addItemInLL(ListDataType Val)
             pTempNode = pTempNode->next;
         }
         pTempNode->next = pNewNode;
+        pTempNode = pTempNode->next;
         LOG("INFO", BLUE, "TempNode Value %d ", pTempNode->value);
     }
+}
+
+void displayItemInLL()
+{
+    node *pTempNode = pHeadNode; 
+    if(pTempNode == NULL)
+    {
+        LOG("INFO", YELLOW, "Empty Link List");
+        return;
+    }
+    else
+    {
+        while (pTempNode->next != NULL)
+        {
+            LOG("INFO", YELLOW, "Node Value %d", pTempNode->value);
+            pTempNode = pTempNode->next;
+        }    
+        
+        if (pTempNode->next == NULL)
+        {
+            LOG("INFO", YELLOW, "Node Value %d", pTempNode->value);
+        }
+        
+    }    
 }
