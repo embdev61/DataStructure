@@ -45,7 +45,7 @@ void displayItemInLL()
     node *pTempNode = pHeadNode; 
     if(pTempNode == NULL)
     {
-        LOG("INFO", YELLOW, "Empty Link List");
+        LOG("ERR", YELLOW, "Empty Link List");
         return;
     }
 
@@ -56,4 +56,46 @@ void displayItemInLL()
         LOG("INFO", YELLOW, "Node Value %d", pTempNode->value);
         pTempNode = pTempNode->next;
     }     
+}
+
+void deleteItemInLL(ListDataType Val)
+{
+    node *pTempNode = pHeadNode;
+    node *pPrevNode = NULL;
+
+    if(pTempNode == NULL)
+    {
+        LOG("ERROR", RED, "No item in link list to delete ");
+        return;
+    }
+    //Search for the item in LL
+    while (pTempNode != NULL)
+    {
+        //Check for the item to be deleted
+        if(pTempNode->value == Val)
+        {
+            //Check for Head Node
+            if(pTempNode == pHeadNode)
+            {
+                LOG("INFO", BLUE, "Head to be deleted ");
+                pHeadNode = pHeadNode->next; 
+                free(pTempNode);
+                pTempNode = pHeadNode;             
+            }
+            else
+            {
+                pPrevNode->next = pTempNode->next;
+                LOG("INFO", BLUE, "Node found to be deleted ");
+                free(pTempNode);
+                pTempNode = pPrevNode->next;;
+            }
+        }
+        else
+        {
+            pPrevNode = pTempNode;
+            pTempNode = pTempNode->next;
+        }
+    }
+
+    displayItemInLL();    
 }

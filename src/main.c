@@ -11,5 +11,7 @@ int main() {
     addItemInLL(25);
     addItemInLL(30);
     displayItemInLL();
+    deleteItemInLL(15);
+   // displayItemInLL();
     return 0;
 }
