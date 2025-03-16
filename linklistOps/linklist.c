@@ -6,33 +6,38 @@ node *pHeadNode = NULL;
 
 void addItemInLL(ListDataType Val)
 {
-    node *pNewNode = (node *)malloc(sizeof(node));
-    node *pTempNode = pHeadNode;
+    node *pNewNode = (node *) malloc(sizeof(node));
+
+    if(pNewNode == NULL)
+    {
+        LOG("ERROR", RED, "Memory allocation failed for value %d", Val);
+        return;
+    }
+
+    //Intialize the value and next pointer of newly added node
+    pNewNode->value = Val;
+    pNewNode->next = NULL;
 
     LOG("INFO", BLUE, "Add Item %d in link list.", Val);
 
-    if(pNewNode != NULL)
-    {   
-        pNewNode->value = Val; 
-        pNewNode->next = NULL;       
-    }
-    /*Check the empty list and add first node in link list*/
-    if (pHeadNode == NULL)
+    //Check for LL is empty or not
+    if(pHeadNode == NULL)
     {
-        LOG("INFO", BLUE, "Add First Node into link list");
-        pHeadNode = pNewNode;        
-        LOG("INFO", BLUE, "HeadpNode Value %d ", pHeadNode->value);
+        pHeadNode = pNewNode;
+        LOG("INFO", BLUE, "Head Node Value %d ", pHeadNode->value);
+        return;
     }
-    else
+
+    //Traverse to end of the node and add item in LL
+    node *pTempNode = pHeadNode;
+    while (pTempNode->next != NULL)
     {
-        while(pTempNode->next != NULL)
-        {
-            pTempNode = pTempNode->next;
-        }
-        pTempNode->next = pNewNode;
         pTempNode = pTempNode->next;
-        LOG("INFO", BLUE, "TempNode Value %d ", pTempNode->value);
     }
+
+    pTempNode->next = pNewNode;   
+    pTempNode = pTempNode->next;
+    LOG("INFO", BLUE, "TempNode Value %d ", pTempNode->value);
 }
 
 void displayItemInLL()
@@ -43,18 +48,12 @@ void displayItemInLL()
         LOG("INFO", YELLOW, "Empty Link List");
         return;
     }
-    else
+
+    LOG("INFO", YELLOW, "Linked List Contents:");
+
+    while (pTempNode != NULL)
     {
-        while (pTempNode->next != NULL)
-        {
-            LOG("INFO", YELLOW, "Node Value %d", pTempNode->value);
-            pTempNode = pTempNode->next;
-        }    
-        
-        if (pTempNode->next == NULL)
-        {
-            LOG("INFO", YELLOW, "Node Value %d", pTempNode->value);
-        }
-        
-    }    
+        LOG("INFO", YELLOW, "Node Value %d", pTempNode->value);
+        pTempNode = pTempNode->next;
+    }     
 }

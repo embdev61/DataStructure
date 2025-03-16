@@ -1,6 +1,12 @@
 # DataStructure
 Repo for Data Structure Programme
 
+# Git related command
+git status
+git add .
+git commit -m "Message"
+git push origin DataStructure
+
 # Build the project
 # Create and navigate to the build directory
 mkdir build
@@ -16,7 +22,7 @@ cmake --build .
 cmake --build . --clean-first
 
 # Run the executable
-./programme.exe
+.\data_structures.exe
 
 
 
