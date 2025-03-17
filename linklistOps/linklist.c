@@ -99,3 +99,45 @@ void deleteItemInLL(ListDataType Val)
 
     displayItemInLL();    
 }
+
+/*
+API is used to identify the middle node of the link list.
+ */
+void findMidleNodeInLL()
+{
+   node *tempNode = pHeadNode;
+   int llLen = 0;
+   int lenVal= 0;
+
+   //Check the length of the link list
+   while(tempNode != NULL)
+   {
+      llLen++;
+      tempNode = tempNode->next;
+   }
+
+   LOG("INFO", BLUE, "Link List length %d ", llLen);
+
+   //To get the middle node
+   lenVal = llLen;
+   llLen = llLen/2;   
+
+   LOG("INFO", BLUE, "Half Link List length %d ", llLen);
+
+   tempNode = pHeadNode;
+   while (llLen)
+   {
+    tempNode = tempNode->next;
+    llLen--;
+   }
+
+   //Check for event number
+   if (lenVal % 2 == 0)
+   {
+        LOG("INFO", BLUE, "Middle Node Value for even number list %d ", tempNode->value);
+   }
+   else
+   {
+        LOG("INFO", BLUE, "Middle Node Value for odd number linst %d ", tempNode->value);
+   }   
+}

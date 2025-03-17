@@ -10,8 +10,10 @@ int main() {
     addItemInLL(20);
     addItemInLL(25);
     addItemInLL(30);
+    addItemInLL(35);
     displayItemInLL();
-    deleteItemInLL(15);
+   // deleteItemInLL(15);
    // displayItemInLL();
+    findMidleNodeInLL();
     return 0;
 }
