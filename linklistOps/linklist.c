@@ -156,3 +156,33 @@ void findMidleNodeInLLOpt()
 
     LOG("INFO", BLUE, "Middle Node Value %d ", pSlow->value);
 }
+
+//Reverse a link list
+void revInLL()
+{
+    node *pTail = pHeadNode;
+    node *pMiddle = pTail->next;
+    node *pTop = pMiddle->next;
+
+    LOG("INFO", BLUE, "Reverse link list");
+
+    if (pTail != NULL)
+    {
+        pTail->next = NULL; //Make the tail to the last node;
+    }
+
+    while (pTop != NULL)
+    {
+        pMiddle->next = pTail;  //Point to the previous link
+        pTail = pMiddle;
+        pMiddle = pTop;
+        pTop = pTop->next;
+    }
+
+    pMiddle->next = pTail;
+    pTail = pMiddle;
+    pHeadNode = pTail; //Head point to tail    
+
+    displayItemInLL();  
+    
+}

@@ -15,6 +15,8 @@ int main() {
    // deleteItemInLL(15);
    // displayItemInLL();
     //findMidleNodeInLL();
-    findMidleNodeInLLOpt();
+  //  findMidleNodeInLLOpt();
+
+    revInLL();
     return 0;
 }
