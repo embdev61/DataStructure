@@ -141,3 +141,18 @@ void findMidleNodeInLL()
         LOG("INFO", BLUE, "Middle Node Value for odd number linst %d ", tempNode->value);
    }   
 }
+
+//Optimize version of finding the middle node of link list
+void findMidleNodeInLLOpt()
+{
+    node *pSlow = pHeadNode;
+    node *pFast = pHeadNode;
+
+    while(pFast != NULL && pFast->next != NULL)
+    {
+        pSlow = pSlow->next;
+        pFast = pFast->next->next;
+    }
+
+    LOG("INFO", BLUE, "Middle Node Value %d ", pSlow->value);
+}

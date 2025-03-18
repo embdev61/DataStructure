@@ -11,5 +11,6 @@ void addItemInLL(ListDataType Val);
 void displayItemInLL();
 void deleteItemInLL(ListDataType Val);
 void findMidleNodeInLL();
+void findMidleNodeInLLOpt();
 
 #endif
