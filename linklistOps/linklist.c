@@ -216,56 +216,51 @@ node * revInLLRec(node *revNode)
  */
 node * rotateLLByK(int pos)
 {
-    int lenLL = 0;
+    int lenLL = 1;
     int travLL = 0;
-    node *tempNode = pHeadNode;
-    node *prevNode;
-    
+    node *lastNode  = pHeadNode;
+
+    if (pHeadNode == NULL || pos < 0)
+    {
+        LOG("INFO", BLUE, "Error: Invalid position value or empty list");
+        return pHeadNode;
+    }
+
     //Check the position value is correct or wrong
     if(pos > 0)
     {
         LOG("INFO", BLUE, "Position Value %d ", pos);
         //Check the length of the link list
-        while (tempNode != NULL)
+        while (lastNode ->next)
         {
             lenLL++;
-            tempNode = tempNode->next;
+            lastNode  = lastNode ->next;
         }
 
-        travLL = pos % lenLL;
+        pos = pos % lenLL;
         
-        LOG("INFO", BLUE, "travLL Value %d ", travLL);
+        LOG("INFO", BLUE, "travLL Value %d ", pos);
 
         //Position is same to linked list length so no change
-        if (travLL == 0)
+        if (pos == 0)
         {
             LOG("INFO", BLUE, "No travese required");
             return (node *) pHeadNode;
         }
 
         //Rebase the temp node pointer value
-        tempNode = pHeadNode;
+        node *temp = pHeadNode;        
         
-        for (int i = 0; i < travLL; i++)
+        for (int i = 1; i < pos; i++)
         {
-            prevNode = tempNode;
-            tempNode = tempNode->next;
+           temp = temp->next;
         }
-        
-        prevNode->next = NULL;
+ 
+        node *newHead = temp->next;
+        temp->next = NULL;
+        lastNode->next = pHeadNode;
 
-        node *tHeadNode = tempNode;
-
-        while (tempNode->next != NULL)
-        {
-            tempNode = tempNode->next;
-        }
-
-        tempNode->next = pHeadNode;
-
-        //pHeadNode = tempNode;
-        pHeadNode = tHeadNode;  
-        return pHeadNode;  
+        return newHead;  
     }
     else
     {
