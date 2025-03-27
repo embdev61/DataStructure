@@ -17,5 +17,6 @@ void findMidleNodeInLL();
 void findMidleNodeInLLOpt();
 void revInLL();
 node * revInLLRec(node *revNode);
+node * rotateLLByK(int pos);
 
 #endif

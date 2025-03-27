@@ -3,6 +3,8 @@
 
 int main() {
 
+    node *revHead;
+
     LOG("INFO", BLUE, "Hello, C Project!"); 
    
     addItemInLL(10);
@@ -16,8 +18,10 @@ int main() {
    // displayItemInLL();
     //findMidleNodeInLL();
   //  findMidleNodeInLLOpt();
+
+#if 0  
     revInLL();
-    node *revHead;
+    
     revHead = revInLLRec(pHeadNode);
 
     LOG("INFO", YELLOW, "Reverse Link List:");
@@ -27,6 +31,20 @@ int main() {
         LOG("INFO", YELLOW, "Node Value %d", revHead->value);
         revHead = revHead->next;
     }  
+
+    revHead = NULL;
+
+  #endif  
+
+    revHead = rotateLLByK(3);
+
+    LOG("INFO", YELLOW, "Rotate link list");
+
+    while (revHead != NULL)
+    {
+        LOG("INFO", YELLOW, "Node Value %d", revHead->value);
+        revHead = revHead->next;
+    } 
 
     LOG("INFO", YELLOW, "END");
 

@@ -194,7 +194,7 @@ void revInLL()
 
 /**
  * Reverse link list using recursive function
- * 
+ * Time compleO(n) Time and O(n) Space
  */
 node * revInLLRec(node *revNode)
 {
@@ -208,4 +208,68 @@ node * revInLLRec(node *revNode)
     revNode->next->next = revNode;
     revNode->next = NULL;
     return llNode;
+}
+
+/**
+ * Rotate a link list
+ * Given a singly linked list and an integer k, the task is to rotate the linked list to the left by k places.
+ */
+node * rotateLLByK(int pos)
+{
+    int lenLL = 0;
+    int travLL = 0;
+    node *tempNode = pHeadNode;
+    node *prevNode;
+    
+    //Check the position value is correct or wrong
+    if(pos > 0)
+    {
+        LOG("INFO", BLUE, "Position Value %d ", pos);
+        //Check the length of the link list
+        while (tempNode != NULL)
+        {
+            lenLL++;
+            tempNode = tempNode->next;
+        }
+
+        travLL = pos % lenLL;
+        
+        LOG("INFO", BLUE, "travLL Value %d ", travLL);
+
+        //Position is same to linked list length so no change
+        if (travLL == 0)
+        {
+            LOG("INFO", BLUE, "No travese required");
+            return (node *) pHeadNode;
+        }
+
+        //Rebase the temp node pointer value
+        tempNode = pHeadNode;
+        
+        for (int i = 0; i < travLL; i++)
+        {
+            prevNode = tempNode;
+            tempNode = tempNode->next;
+        }
+        
+        prevNode->next = NULL;
+
+        node *tHeadNode = tempNode;
+
+        while (tempNode->next != NULL)
+        {
+            tempNode = tempNode->next;
+        }
+
+        tempNode->next = pHeadNode;
+
+        //pHeadNode = tempNode;
+        pHeadNode = tHeadNode;  
+        return pHeadNode;  
+    }
+    else
+    {
+        LOG("ERROR", RED, "Wrong position value");        
+    }   
+    return pHeadNode;    
 }
