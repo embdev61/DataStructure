@@ -16,7 +16,19 @@ int main() {
    // displayItemInLL();
     //findMidleNodeInLL();
   //  findMidleNodeInLLOpt();
-
     revInLL();
+    node *revHead;
+    revHead = revInLLRec(pHeadNode);
+
+    LOG("INFO", YELLOW, "Reverse Link List:");
+
+    while (revHead != NULL)
+    {
+        LOG("INFO", YELLOW, "Node Value %d", revHead->value);
+        revHead = revHead->next;
+    }  
+
+    LOG("INFO", YELLOW, "END");
+
     return 0;
 }

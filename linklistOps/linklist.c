@@ -155,34 +155,57 @@ void findMidleNodeInLLOpt()
     }
 
     LOG("INFO", BLUE, "Middle Node Value %d ", pSlow->value);
+
+    /*
+    Time Complexity: O(n) (Single traversal)
+    Space Complexity: O(1) (No extra memory used)
+    */
 }
 
 //Reverse a link list
+/**
+ *  It has a time complexity of O(n), where n is the number of nodes in the list, as it iterates through the list once.
+ *  The space complexity is O(1) as it uses a constant amount of extra space for the pointers.
+ */
 void revInLL()
 {
-    node *pTail = pHeadNode;
-    node *pMiddle = pTail->next;
-    node *pTop = pMiddle->next;
+    node *pPrev = NULL;
+    node *pCur = pHeadNode;
+    node *pNext = NULL;
+
+    if(pCur == NULL || pCur->next == NULL)
+    {
+        LOG("INFO", BLUE, "No need for reversing a link list");
+        return;
+    }
 
     LOG("INFO", BLUE, "Reverse link list");
 
-    if (pTail != NULL)
+    while(pCur != NULL)
     {
-        pTail->next = NULL; //Make the tail to the last node;
+        pNext = pCur->next;
+        pCur->next = pPrev;
+        pPrev = pCur;
+        pCur = pNext;
+    }
+    pHeadNode = pPrev; 
+    displayItemInLL();      
+}
+
+/**
+ * Reverse link list using recursive function
+ * 
+ */
+node * revInLLRec(node *revNode)
+{
+    if(revNode == NULL || revNode->next == NULL)
+    {
+        return revNode;
     }
 
-    while (pTop != NULL)
-    {
-        pMiddle->next = pTail;  //Point to the previous link
-        pTail = pMiddle;
-        pMiddle = pTop;
-        pTop = pTop->next;
-    }
+    node * llNode = revInLLRec(revNode->next);
 
-    pMiddle->next = pTail;
-    pTail = pMiddle;
-    pHeadNode = pTail; //Head point to tail    
-
-    displayItemInLL();  
-    
+    revNode->next->next = revNode;
+    revNode->next = NULL;
+    return llNode;
 }
