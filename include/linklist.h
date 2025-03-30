@@ -21,5 +21,6 @@ node * rotateLLByK(int pos);
 int valatNNode(int num);
 int delOccuNode(int key);
 int rmvDupInLL();
+int detLoopInLL();
 
 #endif
