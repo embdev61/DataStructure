@@ -36,6 +36,7 @@ int main() {
 
   #endif  
 
+  /*
     revHead = rotateLLByK(3);
 
     LOG("INFO", YELLOW, "Rotate link list");
@@ -45,6 +46,9 @@ int main() {
         LOG("INFO", YELLOW, "Node Value %d", revHead->value);
         revHead = revHead->next;
     } 
+    */
+
+    valatNNode(2);
 
     LOG("INFO", YELLOW, "END");
 

@@ -268,3 +268,141 @@ node * rotateLLByK(int pos)
     }   
     return pHeadNode;    
 }
+
+/**
+ * Given a Linked List of M nodes and a number N, find the value at the Nth node from the end of the Linked List.
+ * If there is no Nth node from the end, print -1.
+ * Input: 1 -> 2 -> 3 -> 4, N = 3
+ * Output: 2
+ */
+int valatNNode(int num)
+{
+    node *mainNode = pHeadNode;
+    node *refNode = pHeadNode;
+
+    for (int i = 1; i < num; i++)
+    {
+        refNode = refNode->next; 
+        if (refNode == NULL)
+        {
+            return -1;
+        }        
+    }
+
+    LOG("INFO", BLUE, "ref node Value %d ", refNode->value);  
+
+    while (refNode->next != NULL)
+    {
+        mainNode = mainNode->next;
+        refNode = refNode->next;
+    }
+
+    LOG("INFO", BLUE, "main node Value %d ", mainNode->value);    
+
+}
+
+
+/**
+ * Delete last occurrence of an item from linked list
+ * Given a singly linked list and a key, the task is to delete the last occurrence of that key in the linked list.
+ */
+int delOccuNode(int key)
+{
+    node *tmpNode = pHeadNode;
+    node *refNode = NULL;
+    node *delNode = NULL;
+    
+    while (tmpNode != NULL)
+    {
+        if(tmpNode->value == key)
+        {
+            refNode = tmpNode; //Make a ref pointer to tmpNode
+        }
+        
+        if (tmpNode->next != NULL && tmpNode->next->next == NULL)
+        {
+            delNode = tmpNode->next; //Just to store the previous node value
+        }
+        tmpNode = tmpNode->next;
+    }
+
+    // If no occurrence of key is found
+    if (refNode == NULL)
+    {
+        LOG("INFO", BLUE, "No node found");
+        return -1; // Return error code
+    }
+
+    if(refNode != NULL)
+    {
+        if(refNode->next == NULL) //Last node to delete
+        {
+            if (delNode != NULL)
+            {
+                delNode->next = NULL; //Use the previous store reference of ref node
+            }            
+            free(refNode); //Free the last occurence
+        }
+        else
+        {
+            delNode = refNode->next;
+            key = delNode->value;
+            delNode->value = refNode->value;
+            refNode->value = key;
+            refNode->next = delNode->next;
+            free(delNode);
+        }
+    }
+    else
+    {
+        LOG("INFO", BLUE, "No node found");   
+    }
+    
+}
+
+/**
+ * Remove Duplicates from a Sorted Linked List
+ * Given a singly linked list. The task is to remove duplicates (nodes with duplicate values) from the given list (if it exists)
+ * Note: Try not to use extra space. The nodes are arranged in a sorted way.
+ */
+
+ int rmvDupInLL()
+ {
+    node *pPrevNod = pHeadNode;
+    node *pNextNode = NULL;
+    node *pDelNode = NULL;
+
+    if (pHeadNode == NULL)
+    {
+        return 0;
+    }
+    
+    if (pPrevNod->next == NULL)
+    {
+        return 0;
+    }   
+
+    if (pPrevNod != NULL && pPrevNod->next !=NULL)
+    {
+        pNextNode = pPrevNod->next; 
+    }
+
+    while (pNextNode != NULL)
+    {
+        if (pPrevNod->value == pNextNode->value)
+        {
+            //Delete the duplicate next node and travese to next packet
+            pDelNode = pNextNode;
+            pNextNode = pNextNode->next;
+            pPrevNod->next = pNextNode;
+            free(pDelNode);
+        }
+        else
+        {
+            pPrevNod = pPrevNod->next;
+            pNextNode = pNextNode->next;
+        }
+        
+    }  
+    return 0;
+ }
