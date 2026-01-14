@@ -1,1 +1,21 @@
-/build
+
+---
+
+## 🔒 Suggested [.gitignore](http://_vscodecontentref_/10)
+```gitignore
+# Build/IDE
+/build/
+/CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.exe
+*.o
+*.obj
+
+# Generated config
+config.h
+config_env.h
+
+# Editor
+.vscode/
