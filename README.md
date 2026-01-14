@@ -1,3 +1,6 @@
+## Notes
+- Detailed data structure notes: `docs/DataStructureNote.md`
+
 # DataStructure
 Repo for Data Structure Programme
 
