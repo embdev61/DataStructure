@@ -411,6 +411,9 @@ int delOccuNode(int key)
   * Detect Loop or Cycle in Linked List
   * The slow and fast pointer approach (also called the Tortoise and Hare Algorithm) is an efficient method 
   * used to detect cycles in a linked list.
+  * Time Complexity: O(n) (Linear Time)
+  * Space Complexity: O(1) (Constant Space)
+  * Using Floyd’s Cycle Detection Algorithm – O(n) Time and O(1) Space
   */
  int detLoopInLL()
  {
@@ -436,3 +439,53 @@ int delOccuNode(int key)
     return 0;  
 
  }
+
+/**
+* Function to detect and remove loop in a linked list that
+* may contain loop
+*/
+int rmvLoopInLL()
+{
+    node *pFastPtr = pHeadNode;
+    node *pSlowPtr = pHeadNode;
+
+    if (pHeadNode == NULL)
+    {
+        return 0;
+    }
+
+    while (pFastPtr != NULL && pFastPtr->next != NULL)
+    {
+        pFastPtr = pFastPtr->next->next;
+        pSlowPtr = pSlowPtr->next;
+
+        //Condition to check for loop in LL
+        if(pFastPtr == pSlowPtr)
+        {
+            /*
+            Code to remove the loop in link list
+            */
+           pSlowPtr = pHeadNode;
+           //Loop at the start of the linklist
+           if (pSlowPtr == pFastPtr)
+           {
+             while(pFastPtr->next != pSlowPtr)
+             {
+                pFastPtr = pFastPtr->next;
+             }
+           }
+           else
+           {
+            while(pSlowPtr->next != pFastPtr->next)
+            {
+                pSlowPtr = pSlowPtr->next;
+                pFastPtr = pFastPtr->next;
+            }
+
+           }          
+           pFastPtr->next = NULL;           
+           return 1;
+        }
+    }
+    return 0;    
+}
