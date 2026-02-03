@@ -1,12 +1,10 @@
 # Meta Binary Search (Binary-search-on-answer)
 
-## Skiena’s one-sided meta binary search (bit-by-bit index construction)
-
-This variant (described by Steven Skiena as "one-sided binary search") builds the target array index one bit at a time (MSB → LSB). It is a binary-search alternative that constructs the index in O(log n) bit-choices and can be easier to implement without off-by-one or overflow bugs. It is also adaptable to arrays of unknown length (with bounds checks).
+Meta Binary Search is a modified version of binary search where we use bit manipulation. We are to find the target array index one bit at a time (MSB → LSB) by using bit manipulation. It is also adaptable to arrays of unknown length (with bounds checks).
 
 ### How it works (short)
-- Compute number of bits needed for the largest index: `bits = ceil(log2(n))`.
-- Start with `idx = 0` and iterate bits from most-significant to least:
+- Find Bits: Determine the number of bits required for the array size ($bits = \lceil \log_2(n) \rceil$).
+- Start with `idx = 0` and iterate bits from MSB -> LSB:
   - `cand = idx | (1 << b)` (try setting bit b).
   - If `cand >= n`, skip (bit must be 0).
   - Compare `arr[cand]` to target:
@@ -23,30 +21,29 @@ This variant (described by Steven Skiena as "one-sided binary search") builds th
 
 ### C implementation (safe, O(log n))
 ```c
-#include <stdio.h>
-
 int meta_binary_search_one_sided(int arr[], int n, int target) {
     if (n <= 0) return -1;
-    int bits = 0;
-    while ((1 << bits) < n) bits++;   // number of bits to represent indices
+    
+    // 1. Check index 0 separately to simplify the bitwise logic
+    if (arr[0] == target) return 0;
 
-    int idx = 0;
+    int bits = 0;
+    while ((1 << bits) < n) bits++;
+
+    int idx = 0; 
     for (int b = bits - 1; b >= 0; --b) {
         int cand = idx | (1 << b);
-        if (cand >= n) continue;               // overshoot → bit = 0
-        if (arr[cand] == target) return cand;  // found
-        if (arr[cand] < target) idx = cand;    // set this bit
+
+        if (cand < n) {
+            if (arr[cand] == target) return cand;
+            if (arr[cand] < target) {
+                idx = cand; // Only update idx if the value is smaller
+            }
+        }
     }
-    if (idx < n && arr[idx] == target) return idx;
-    return -1; // not found
+
+    // Final check in case the loop landed one step behind the target
+    return (idx < n && arr[idx] == target) ? idx : -1;
 }
 ```
-
-### Tradeoffs & notes
-- Complexity: O(log n) comparisons (same asymptotic cost as regular binary search) but two parts of the algorithm (bit count + bits loop) — often similar or slightly slower in practice due to constants.
-- Advantage: avoids some common off-by-one and mid-overflow mistakes and can be adapted to unknown-length arrays by treating out-of-bounds as "overshoot".
-- Caveats: with duplicates it returns an arbitrary matching index (not guaranteed leftmost/rightmost); extra logic is needed for first/last occurrence.
-
----
-
 **See also:** [Binary Search](./BinarySearch.md), [Sentinel Linear Search](./Sentinel_Linear_Search.md)
