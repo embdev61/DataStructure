@@ -20,26 +20,26 @@ Jump search is a searching algorithm for **sorted arrays** that jumps ahead by a
 **Target:** `9` | **n:** `8`
 
 * **Block size:** sqrt{8} approx 3.
-* **Jump 1:** Index 3 (Value: `7`). Since $7 < 9$, jump again.
-* **Jump 2:** Index 6 (Value: `13`). Since $13 > 9$, the target must be in the block between index 3 and 6.
+* **Jump 1:** Index 3 (Value: `7`). Since 7 < 9, jump again.
+* **Jump 2:** Index 6 (Value: `13`). Since 13 > 9, the target must be in the block between index 3 and 6.
 * **Linear Search:** Check from index 3 to 6. Find `9` at **index 4**.
 
 ---
 
 ## Complexity
-* **Time Complexity:** $O(\sqrt{n})$
-    * Jumping takes $O(n/m)$ steps.
-    * Linear search within the block takes $O(m)$ steps.
-    * Optimized when $m = \sqrt{n}$.
-* **Space Complexity:** $O(1)$ — No extra space or recursion needed.
+* **Time Complexity:** O(sqrt{n})
+    * Jumping takes O(n/m) steps.
+    * Linear search within the block takes O(m) steps.
+    * Optimized when m = sqrt{n}.
+* **Space Complexity:** O(1) — No extra space or recursion needed.
 
 ---
 
-## When to Use 💡
+## When to Use
 
 * **Large Sorted Arrays:** When you want something faster than Linear Search but simpler than Binary Search.
 * **Limited Random Access:** Useful in systems where jumping backward is more expensive than jumping forward (though it still requires some backward movement for the linear phase).
-* **Not Ideal For:** Very small arrays (where Linear Search is faster) or when $O(\log n)$ performance is strictly required.
+* **Not Ideal For:** Very small arrays (where Linear Search is faster) or when O(log n) performance is strictly required.
 
 ---
 
@@ -47,8 +47,8 @@ Jump search is a searching algorithm for **sorted arrays** that jumps ahead by a
 
 | Algorithm | Complexity | Comparison to Jump Search |
 | :--- | :--- | :--- |
-| **Linear Search** | $O(n)$ | Jump Search is faster for large $n$. |
-| **Binary Search** | $O(\log n)$ | Binary Search is faster, but Jump Search is easier to implement and requires no recursion. |
+| **Linear Search** | O(n) | Jump Search is faster for large n. |
+| **Binary Search** | O(log n) | Binary Search is faster, but Jump Search is easier to implement and requires no recursion. |
 
 ## Example Implementation (C)
 ```c
