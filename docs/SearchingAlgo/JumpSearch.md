@@ -1,13 +1,12 @@
-# Jump Search Algorithm — Quick Explanation ✅
+# Jump Search Algorithm
 
-## What it is
-Jump search is a searching algorithm for **sorted arrays** that jumps ahead by a fixed block size (usually $\sqrt{n}$) to find the block containing the target, then performs a linear search within that block. It serves as a middle ground between Linear Search and Binary Search.
+Jump search is a searching algorithm for **sorted arrays** that jumps ahead by a fixed block size (usually sqrt{n}) to find the block containing the target, then performs a linear search within that block. It serves as a middle ground between Linear Search and Binary Search.
 
 ---
 
-## How it Works (Steps) 🔧
+## How it Works (Steps)
 
-1.  **Determine block size:** $m = \sqrt{n}$.
+1.  **Determine block size:** m = sqrt{n}.
 2.  **Jump Phase:** Start from index 0 and jump ahead by `m` until you find a block where `arr[i] >= target` (or reach the end of the array).
 3.  **Linear Search Phase:** Once the potential block is identified, perform a linear search from the previous jump point to find the exact match.
 4.  **Result:** If found, return the index; otherwise, return "Not Found."
@@ -20,7 +19,7 @@ Jump search is a searching algorithm for **sorted arrays** that jumps ahead by a
 **Sorted Array:** `[1, 3, 5, 7, 9, 11, 13, 15]`  
 **Target:** `9` | **n:** `8`
 
-* **Block size:** $\sqrt{8} \approx 3$.
+* **Block size:** sqrt{8} approx 3.
 * **Jump 1:** Index 3 (Value: `7`). Since $7 < 9$, jump again.
 * **Jump 2:** Index 6 (Value: `13`). Since $13 > 9$, the target must be in the block between index 3 and 6.
 * **Linear Search:** Check from index 3 to 6. Find `9` at **index 4**.
